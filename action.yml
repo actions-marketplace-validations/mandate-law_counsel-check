@@ -1,0 +1,30 @@
+name: Counsel Check
+description: Flags pull requests that touch legal counsel triggers (AI features, agent actions, sensitive data, analytics, payments, minors). Runs inside GitHub; sends no code anywhere.
+author: Mandate Law
+branding:
+  icon: shield
+  color: green
+inputs:
+  github-token:
+    description: Token used to read the pull request diff and post the comment. The default workflow token works.
+    default: ${{ github.token }}
+  triggers-file:
+    description: Path to your tailored triggers file. Falls back to the bundled Mandate Law template if it doesn't exist.
+    default: .counsel/triggers.json
+  comment:
+    description: Post (and keep updated) one pull request comment when triggers match.
+    default: "true"
+  scan-description:
+    description: Also screen the pull request title and description (or push commit messages) for triggers.
+    default: "true"
+  fail-on-match:
+    description: Fail the job when a trigger matches, so the pull request can't merge until someone reviews it.
+    default: "false"
+outputs:
+  matched:
+    description: "true if any counsel trigger matched."
+  trigger-ids:
+    description: Comma-separated ids of the matching triggers.
+runs:
+  using: node24
+  main: index.mjs
