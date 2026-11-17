@@ -1,5 +1,5 @@
 name: Counsel Check
-description: Flags pull requests that touch legal counsel triggers (AI features, agent actions, sensitive data, analytics, payments, minors). Runs inside GitHub; sends no code anywhere.
+description: "Flags pull requests touching legal counsel triggers: AI, agents, payments, analytics, sensitive data. Code stays in GitHub."
 author: Mandate Law
 branding:
   icon: shield
